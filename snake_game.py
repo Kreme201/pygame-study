@@ -58,7 +58,7 @@ class Snake:
             sleep(1)
             self.create()
         elif new[0] < 0 or new[0] >= SCREEN_WIDTH or \
-            new[1] < 0 or new[1] >= SCREEN_HEIGHT:
+                new[1] < 0 or new[1] >= SCREEN_HEIGHT:
             sleep(1)
             self.create()
         else:
@@ -126,14 +126,14 @@ class Game:
     # 게임 로직 수행
     def run_logic(self):
         self.snake.move()
-        self.check_eat()
+        self.check_eat(self.snake, self.feed)
         self.speed = (10 + self.snake.length) / 2
 
     # 뱀이 먹이를 먹었는지 체크
-    def check_eat(self):
-        if self.snake.positions[0] == self.feed.position:
-            self.snake.eat()
-            self.feed.create()
+    def check_eat(self, snake, feed):
+        if snake.positions[0] == feed.position:
+            snake.eat()
+            feed.create()
 
     # 게임 정보 출력
     def draw_info(self, length, speed, screen):
